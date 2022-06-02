@@ -20,7 +20,7 @@ export default function App(){
                 <Route path="/" element={<HomeScreen stockPlan={stockPlan} token={token} setToken={setToken} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />}></Route>
                 <Route path="/sign-up"  token={token} setToken={setToken} element={<RegisterScreen name={name} setName={setName} cpf={cpf} setCpf={setCpf} email={email} setEmail={setEmail} password={password} setPassword={setPassword}/>}  ></Route>
                 <Route path="/subscriptions" element={<Plans token={token} stockPlan={stockPlan} setStockPlan={setStockPlan} setToken={setToken} />} ></Route>
-                <Route path="/subscriptions/:idPlano" element={<PickPlan/>}></Route>
+            {/*    <Route path="/subscriptions/:idPlano" element={<PickPlan/>}></Route>*/}
             </Routes>
         </BrowserRouter>
         </>
