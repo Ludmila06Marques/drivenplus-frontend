@@ -1,14 +1,17 @@
 import axios from "axios"
 import { useEffect } from "react"
 import styled from "styled-components"
+import {Link} from "react-router-dom"
 
 function OnePlan({id , image , price}){
     
     return(<>
+       <Link to={`/subscriptions/${id}`} >
         <Plan>
         <ImagePlan src={image}/>
         <Price>{price}</Price>
         </Plan>
+        </Link>
     </>)
 }
 
