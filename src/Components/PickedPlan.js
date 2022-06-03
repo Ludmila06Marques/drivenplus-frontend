@@ -5,6 +5,8 @@ import styled from "styled-components"
 import SignPlane from "./SignPlan";
 
 function BenefitsPlane({id , title , membershipId , link, index , setMemberShipId1}){
+
+ 
   
   setMemberShipId1(membershipId)
   console.log(membershipId)
@@ -21,6 +23,7 @@ function BenefitsPlane({id , title , membershipId , link, index , setMemberShipI
 
 export default function PickedPlan({token , membershipId , setMemberShipId1 , membershipId1}){
   //  const [hid , setHid]=useState("0")
+  const [hid , setHid]=useState(false)
 
     const {idPlano} = useParams();
     console.log("entrei" , idPlano )
@@ -81,10 +84,46 @@ export default function PickedPlan({token , membershipId , setMemberShipId1 , me
         </GroupPrice>
        <Text> R$ {price} cobrados mensalmente </Text>
         </Group>
-        <SignPlane membershipId1={membershipId1} token={token}/>
+        <SignPlane setHid={setHid} membershipId1={membershipId1} token={token}/>
+        <Ask hid={hid} >
+            <AskTitle>Tem certeza que deseja assinar o plano {name}({price}) ?</AskTitle>
+            <ButtonNo>Nao</ButtonNo>
+            <ButtonYes>Sim</ButtonYes>
+        </Ask>
 
     </>)
 }
+const ButtonNo=styled.button`
+width: 95px;
+height: 52px;
+border-radius: 8px;
+margin-top: 47px;
+margin-right: 14px;
+`
+const ButtonYes=styled.button`
+width: 95px;
+height: 52px;
+border-radius: 8px;
+margin-top: 47px;
+
+`
+const AskTitle=styled.h1`
+font-size:18px;
+color: black;
+font-weight: bold;
+text-align: center;
+`
+const Ask=styled.div`
+opacity: ${props=> props.hid ? "1" : "0"};;
+width: 248px;
+height: 210px;
+border-radius: 12px;
+background-color: white;
+position: absolute;
+top: 229px;
+right: 63px;
+padding: 22px;
+`
 const Text=styled.h3`
 font-size: 14px;
 color: white;
@@ -147,28 +186,32 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+position: relative;
 `
 const Icones=styled.div`
+width: 100%;
 padding: 20px;
-display:  flex;
+display: flex;
 justify-content: space-between;
 align-items: center;
+
 
 ion-icon{
     &:first-child{
     font-size: 40px;
     visibility: visible;
     color: white;
+ 
     }
   
 
-   // &:last-child{
-   // display: ${props=> props.hid == " 0" ? "none" : "block"};  
-   // font-size: 40px;   
-   // color: black;
-   // background-color: white;
-   // border-radius: 4px;
-//}
+    &:last-child{
+  // display: ${props=> props.hid == " 0" ? "none" : "block"};  
+   font-size: 40px;   
+   color: black;
+   background-color: white;
+   border-radius: 4px;
+}
 }
 
 `

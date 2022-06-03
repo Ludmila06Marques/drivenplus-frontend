@@ -37,7 +37,7 @@ export default function RegisterScreen({name , setName , email , setEmail , pass
          <InputCpf  placeholder=" CPF" onChange={(e)=> setCpf(e.target.value)} value={cpf} required/>
          <InputEmail  placeholder=" E-mail" onChange={(e)=> setEmail(e.target.value)} value={email} required/>
          <InputPassword type="password" placeholder=" Senha" onChange={(e)=> setPassword(e.target.value)} value={password} required/>
-         <RegisterButton onClick={register} >Entrar</RegisterButton>
+         <RegisterButton onClick={register} >Registrar</RegisterButton>
 
          <Link to="/">
         <Login>Já possuí uma conta? Entre</Login>

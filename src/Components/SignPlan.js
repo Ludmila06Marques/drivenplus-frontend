@@ -3,30 +3,33 @@ import { useState } from "react"
 import styled from "styled-components"
 
 
-export default function SignPlane({token , membershipId1}){
+export default function SignPlane({token , membershipId1  , setHid}){
    console.log(membershipId1)
     const[cardName , setCardName]=useState("")
     const[cardNumber , setCardNumber]=useState("")
     const[securityNumber , setSecurityNumber]=useState("")
     const[expirationDate , setExpirationDate]=useState("")
   
-    function assinar() { const body={
+    function assinar() {
+        const config={
+            headers:{
+            Authorization:`Bearer ${token}`
+            }
+        }
+        console.log(config)
+        const body={
         membershipId: membershipId1,
         cardName,
         cardNumber,
         securityNumber,
-        expirationDate}
-        
-    const config={
-        headers:{
-        Authorization:`Bearer ${token}`
-        }
-    }
-    const promise= axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions" ,  body ,config)
+        expirationDate
+    }  
+    const promise= axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions" ,body , config )
 
     promise 
     .then((res)=>{
        console.log(res.data)
+       setHid(true)
     }
     )
     .catch((err)=>{
@@ -45,9 +48,11 @@ export default function SignPlane({token , membershipId1}){
 </Container>
 <Sign onClick={assinar} >ASSINAR</Sign>
 
+
 </Group>
     </>)
 }
+
 const Sign=styled.button`
 background-color: #FF4791;
 font-size: 14px;
@@ -69,6 +74,7 @@ margin-right: 9px;
 
 const Group=styled.div`
 padding: 0 40px;
+
 `
 
 const Input=styled.input`
