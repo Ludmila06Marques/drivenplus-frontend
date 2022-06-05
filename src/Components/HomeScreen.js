@@ -2,7 +2,7 @@ import { Link  , useNavigate} from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
 
-export default function HomeScreen({  setLogin, stockPlan, token , setToken ,setEmail , email , password , setPassword}){
+export default function HomeScreen({  setLogin, setToken ,setEmail , email , password , setPassword}){
 
     const navigate= useNavigate()
 
@@ -17,13 +17,21 @@ export default function HomeScreen({  setLogin, stockPlan, token , setToken ,set
              .then(res=>{   
                 setToken(res.data.token)    
                 setLogin(res.data)
-                 console.log(res.data)             
-                 navigate("/subscriptions")
+               
+                 if(res.data.membership!== null){
+                  navigate("/home")
+                 
+                 }  
+                 else{
+                  navigate("/subscriptions")
+                 }      
+               //  navigate("/subscriptions")
                 // navigate("/home")
              })
               
            .catch(err=>{
-             console.log(err)
+             alert(err)
+             
              setEmail("")
              setPassword("")
            
@@ -59,6 +67,7 @@ width: 298px;
 height: 52px;
 margin-top: 24px;
 border-radius: 8px;
+border: solid 1px #FF4791;
 `
 const InputPassword=styled.input`
 width: 299px;

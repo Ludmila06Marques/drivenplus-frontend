@@ -1,16 +1,13 @@
-import { useParams } from "react-router-dom"
+import { useParams , useNavigate} from "react-router-dom"
 import { useEffect  , useState} from "react"
 import axios from "axios";
 import styled from "styled-components"
 import SignPlane from "./SignPlan";
 import Ask from "./Modal";
 
-function BenefitsPlane({id , title , membershipId , link, index , setMemberShipId1}){
-
- 
-  
+function BenefitsPlane({title , membershipId , index , setMemberShipId1}){
   setMemberShipId1(membershipId)
-  console.log(membershipId)
+ 
     return(<>
     
         <GroupBenefit>
@@ -22,11 +19,12 @@ function BenefitsPlane({id , title , membershipId , link, index , setMemberShipI
 }
 
 
-export default function PickedPlan({token , membershipId , setMemberShipId1 , membershipId1 , setChoose , perks , setPerks}){
+export default function PickedPlan({token , setMemberShipId1 , membershipId1 , setChoose , perks , setPerks , setPlan , choose ,  email , password , setLogin}){
   //  const [hid , setHid]=useState("0")
+  const navigate=useNavigate()
 
     const {idPlano} = useParams();
-    console.log("entrei" , idPlano )
+   
     const [image , setImage]=useState("")
     const [price , setPrice]=useState("")
     const [name , setName]=useState("")
@@ -43,7 +41,7 @@ export default function PickedPlan({token , membershipId , setMemberShipId1 , me
        
         promise
         .then(res=>{
-            console.log(res.data)
+          
             setImage(res.data.image)
             setPrice(res.data.price)
             setName(res.data.name)
@@ -56,13 +54,18 @@ export default function PickedPlan({token , membershipId , setMemberShipId1 , me
 
         })
     },[])
-    console.log(perks)
+    
+
+    function goBack(){
+        navigate("/subscriptions")
+
+    }
     
 
     return(<>
     <Container>
         <Icones>
-        <ion-icon name="arrow-back-outline"></ion-icon>
+        <ion-icon onCLick={goBack} name="arrow-back-outline"></ion-icon>
        
         </Icones>
         <Image src={image} />
@@ -84,7 +87,7 @@ export default function PickedPlan({token , membershipId , setMemberShipId1 , me
         </GroupPrice>
        <Text> R$ {price} cobrados mensalmente </Text>
         </Group>
-        <SignPlane setChoose={setChoose} name={name} price={price}  membershipId1={membershipId1} token={token}/>
+        <SignPlane setLogin={setLogin} email={email}  password={password} choose={choose} setPlan={setPlan} setChoose={setChoose} name={name} price={price}  membershipId1={membershipId1} token={token}/>
         
 
     </>)

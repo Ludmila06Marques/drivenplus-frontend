@@ -2,12 +2,16 @@ import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
 
-export default function Footer({token}){
+//Rota /planos existe??
+
+export default function Footer({token }){
 
     const navigate= useNavigate()
 
     function changePlan(){
-        navigate("/planos")
+     //navigate("/planos")
+     
+     navigate("/subscriptions")
     }
     function cancelPlan(){
 
@@ -25,6 +29,7 @@ export default function Footer({token}){
                 console.log("deletando")
               })
               .catch(err=>{
+                
                   console.log(err)
               })
 
@@ -56,6 +61,8 @@ background-color:#FF4791 ;
 color: white;
 font-size: 18px;
 border-radius: 8px;
+border: 1px #FF4791 solid;
+
 `
 
 const Cancel=styled.button`
@@ -65,5 +72,6 @@ background-color:#FF4747;
 color: white;
 font-size: 18px;
 border-radius: 8px;
+border: 1px #FF4747 solid;
 `
 

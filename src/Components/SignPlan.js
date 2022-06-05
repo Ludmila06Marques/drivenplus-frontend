@@ -2,15 +2,12 @@ import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
 import Ask from "./Modal"
+ 
 
 
+export default function SignPlane({token , membershipId1  , name , price , setChoose , setPlan , choose , email , password , setLogin}){
 
-export default function SignPlane({token , membershipId1  , name , price , setChoose}){
-
-   const[modal , setModal]=useState(false)
-
-
-   console.log(membershipId1)
+    const[modal , setModal]=useState(false)
     const[cardName , setCardName]=useState("")
     const[cardNumber , setCardNumber]=useState("")
     const[securityNumber , setSecurityNumber]=useState("")
@@ -31,7 +28,7 @@ export default function SignPlane({token , membershipId1  , name , price , setCh
 <Input2 placeholder=" Validade" onChange={(e)=> setExpirationDate(e.target.value)} value={expirationDate} required/>
 </Container>
 <Sign onClick={ask} >ASSINAR</Sign>
-<Ask setChoose={setChoose} membershipId1={membershipId1} cardName={cardName} cardNumber={cardNumber} securityNumber={securityNumber} expirationDate={expirationDate} modal={modal} setModal={setModal} name={name} price={price} token={token} />
+<Ask  email={email} password={password} choose={choose} setPlan={setPlan} setChoose={setChoose} membershipId1={membershipId1} cardName={cardName} cardNumber={cardNumber} securityNumber={securityNumber} expirationDate={expirationDate} modal={modal} setModal={setModal} name={name} price={price} token={token} setLogin={setLogin} />
 </Group>
     </>)
 }
@@ -43,6 +40,7 @@ color: white;
 width: 299px;
 height: 52px;
 border-radius: 8px;
+border: 1px #FF4791 solid;
 `
 
 const Input2=styled.input`

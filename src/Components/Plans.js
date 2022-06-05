@@ -3,23 +3,16 @@ import { useEffect } from "react"
 import styled from "styled-components"
 import {Link} from "react-router-dom"
 
-function OnePlan({id , image , price}){
-    
+function OnePlan({id , image , price}){  
     return(<>
        <Link to={`/subscriptions/${id}`} >
         <Plan>
         <ImagePlan src={image}/>
-        <Price>{price}</Price>
+        <Price>R$ {price}</Price>
         </Plan>
         </Link>
     </>)
 }
-
-
-
-
-
-
 
 export default function Plans({token , stockPlan, setStockPlan}){
     useEffect(()=>{
@@ -30,9 +23,6 @@ export default function Plans({token , stockPlan, setStockPlan}){
         }
 
         const promise= axios.get("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions/memberships" , config)
-
-        console.log(config)
-        
         promise
         .then(res=>{
             setStockPlan([...res.data])
@@ -40,17 +30,13 @@ export default function Plans({token , stockPlan, setStockPlan}){
         })
         .catch(err=>{
             console.log(err)
-        })
-    
-        
+        })      
     },[])
 
-console.log(stockPlan)
-console.log(stockPlan)
+
     return(<>
     <Container>
-        <Title>Escolha seu Plano</Title>
-       
+        <Title>Escolha seu Plano</Title> 
         {stockPlan.map((item , index)=><OnePlan key={index} index={index}  id={item.id} image={item.image} price={item.price} />)}
     </Container>
     </>)
@@ -61,6 +47,10 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
+
+a{
+    text-decoration: none;
+}
 
 `
 const Title=styled.h1`

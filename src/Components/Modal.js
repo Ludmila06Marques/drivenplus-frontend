@@ -3,18 +3,41 @@ import styled from "styled-components"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
-export default function Ask({name , price , modal , setModal , click , setClick , membershipId1 , cardName , cardNumber , securityNumber , expirationDate , token , setChoose}){
+export default function Ask({name , price , modal , setModal ,  membershipId1 , cardName , cardNumber , securityNumber , expirationDate , token , setChoose , email , password , setLogin}){
   
-    console.log(modal)
+    function log(){
+        const body={
+            email,
+            password}
+   
+          const promise= axios.post('https://mock-api.driven.com.br/api/v4/driven-plus/auth/login' , body)
+   
+                promise
+                .then(res=>{   
+                  
+                   setLogin(res.data)                  
+                   navigate("/home")
+                  //  navigate("/subscriptions")
+                   // navigate("/home")
+                })
+                 
+              .catch(err=>{
+                alert(err)
+              
+              })
+
+    }
+ 
     const navigate= useNavigate()
       
     function assinar() {
+      
         const config={
             headers:{
             Authorization:`Bearer ${token}`
             }
         }
-        console.log(config)
+       
         const body={
         membershipId: membershipId1,
         cardName,
@@ -25,25 +48,28 @@ export default function Ask({name , price , modal , setModal , click , setClick 
     const promise= axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions" ,body , config )
 
     promise 
-    .then((res)=>{
-      setChoose(res.data.membership)
-
-       console.log(res.data)
+    .then((res)=>{  
+        log() 
+      setChoose(res.data)  
       setModal(!modal)
-      navigate("/home")
-      
+    
+ 
     }
     )
+   
     .catch((err)=>{
-        console.log(err)
+        alert(err)
+      
 
     }
-    )}
+    )
+     
+}
     return(
        <>
        {modal &&
        <Overlay>
-       < ion-icon  onClick={()=> setModal(false)} name="close-outline"></ion-icon>
+       < ion-icon  onClick={()=> setModal(!modal)} name="close-outline"></ion-icon>
        <AskGroup>
         <AskTitle>Tem certeza que deseja assinar o plano {name}({price}) ?</AskTitle>
         <ButtonNo onClick={()=> setModal(!modal)} >Nao</ButtonNo>
@@ -60,12 +86,16 @@ height: 52px;
 border-radius: 8px;
 margin-top: 47px;
 margin-right: 14px;
+background-color: #CECECE;
+border: solid 1px #FF4791;
 `
 const ButtonYes=styled.button`
 width: 95px;
 height: 52px;
 border-radius: 8px;
 margin-top: 47px;
+background-color:#FF4791 ;
+border: solid 1px #FF4791;
 
 `
 const AskTitle=styled.h1`

@@ -3,7 +3,7 @@ import { Link , useNavigate } from "react-router-dom"
 import axios from "axios"
 
 export default function RegisterScreen({name , setName , email , setEmail , password , setPassword , cpf , setCpf }){
-    console.log(name)
+  
     const navigate= useNavigate()
 
     function register(){
@@ -18,7 +18,7 @@ export default function RegisterScreen({name , setName , email , setEmail , pass
         promise
         .then(res=>{
          
-            console.log(res.data)     
+            
             navigate("/")
          
         })
@@ -60,6 +60,7 @@ width: 298px;
 height: 52px;
 margin-top: 24px;
 border-radius: 8px;
+border: solid 1px #FF4791;
 `
 const Container=styled.div`
 display: flex;

@@ -15,11 +15,12 @@ export default function App(){
     const [token , setToken]=useState("")
     const [stockPlan , setStockPlan]=useState([])
     const [membershipId1 , setMemberShipId1]=useState("")
-   const [choose , setChoose]=useState()
-   const[chooseMemership , setChooseMembership]=useState()
-   const [login , setLogin]=useState()
-   const[ perks , setPerks]=useState([])
-   console.log(choose)
+    const [choose , setChoose]=useState({})
+    const[chooseMemership , setChooseMembership]=useState()
+    const [login , setLogin]=useState()
+    const[ perks , setPerks]=useState([])
+  
+    console.log(login)
 
 
     return(
@@ -27,10 +28,10 @@ export default function App(){
 
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<HomeScreen stockPlan={stockPlan} token={token} setToken={setToken} email={email} setEmail={setEmail} password={password} setPassword={setPassword}  setLogin={setLogin} />}></Route>
+                <Route path="/" element={<HomeScreen choose={choose} stockPlan={stockPlan} token={token} setToken={setToken} email={email} setEmail={setEmail} password={password} setPassword={setPassword}  setLogin={setLogin} />}></Route>
                 <Route path="/sign-up"  token={token} setToken={setToken} element={<RegisterScreen name={name} setName={setName} cpf={cpf} setCpf={setCpf} email={email} setEmail={setEmail} password={password} setPassword={setPassword}/>}  ></Route>
                 <Route path="/subscriptions" element={<Plans token={token} stockPlan={stockPlan} setStockPlan={setStockPlan} setToken={setToken} />} ></Route>
-             <Route path="/subscriptions/:idPlano" element={<PickedPlan  perks={perks} setPerks={setPerks} setChoose={setChoose} membershipId1={membershipId1} setMemberShipId1={setMemberShipId1} token={token} />}></Route>
+             <Route path="/subscriptions/:idPlano" element={<PickedPlan setLogin={setLogin} email={email}  password={password} perks={perks} setPerks={setPerks} setChoose={setChoose} choose={choose} membershipId1={membershipId1} setMemberShipId1={setMemberShipId1} token={token} login={login} />}></Route>
             <Route path="/home"  element={<Home token={token} perks={perks} login={login} name={name} choose={choose} />}></Route>
             </Routes>
         </BrowserRouter>
