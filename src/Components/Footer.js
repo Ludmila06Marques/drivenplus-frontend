@@ -1,10 +1,13 @@
 import styled from "styled-components"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
-
+import TokenContext from "../Contexts/TokenContext"
+import { useContext } from "react"
 //Rota /planos existe??
 
-export default function Footer({token }){
+export default function Footer(){
+  
+  const {token }=useContext(TokenContext)
 
     const navigate= useNavigate()
 

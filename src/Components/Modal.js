@@ -1,11 +1,15 @@
-import react from "react";
+
 import styled from "styled-components"
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import TokenContext from "../Contexts/TokenContext";
+import { useContext } from "react";
 
-export default function Ask({name , price , modal , setModal ,  membershipId1 , cardName , cardNumber , securityNumber , expirationDate , token , setChoose , email , password , setLogin}){
-  
-    function log(){
+export default function Ask({name , price , modal , setModal ,  membershipId1 , cardName , cardNumber , securityNumber , expirationDate , setChoose , email , password }){
+
+    const {token ,  setLogin}=useContext(TokenContext)
+
+   function log(){
         const body={
             email,
             password}
@@ -52,6 +56,7 @@ export default function Ask({name , price , modal , setModal ,  membershipId1 , 
         log() 
       setChoose(res.data)  
       setModal(!modal)
+   
     
  
     }
@@ -59,6 +64,7 @@ export default function Ask({name , price , modal , setModal ,  membershipId1 , 
    
     .catch((err)=>{
         alert(err)
+        console.log(err)
       
 
     }
@@ -87,7 +93,8 @@ border-radius: 8px;
 margin-top: 47px;
 margin-right: 14px;
 background-color: #CECECE;
-border: solid 1px #FF4791;
+border: solid 1px #CECECE;
+color: white;
 `
 const ButtonYes=styled.button`
 width: 95px;
@@ -96,6 +103,7 @@ border-radius: 8px;
 margin-top: 47px;
 background-color:#FF4791 ;
 border: solid 1px #FF4791;
+color: white;
 
 `
 const AskTitle=styled.h1`

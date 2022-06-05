@@ -1,20 +1,24 @@
 import styled from "styled-components"
 import Footer from "./Footer"
 import{ Link }from "react-router-dom"
+import TokenContext from "../Contexts/TokenContext"
+import { useContext } from "react"
+
 
 
 function Button({title , link}){
     return(<>
-     <Link to={link} >
+   <a href={link} target="_blank">
      <Botton>{title}</Botton>
-     </Link>
+     </a>
     </>)
 }
 
 
-export default function Home({choose , login  , token}){
+export default function Home({choose }){
+    const { login}=useContext(TokenContext)
 
-
+  
 
 console.log(login)
 console.log(choose)
@@ -26,11 +30,13 @@ console.log(choose)
     return(<>
     <Group>
     <ImagePlan src={login.membership.image}/>
+    <Link to={`/users/${login.id}`}>
     <ion-icon name="person-circle-outline"></ion-icon>
+    </Link>
     <GroupApp>
     <Title>Ola , {login.name}</Title>
    {login.membership.perks.map((item , index)=><Button key={index} index={index} title={item.title} id={item.it} link={item.link} membershipId={item.membershipId} />)}
-   <Footer token={token} />
+   <Footer  />
     </GroupApp>
    
     </Group>

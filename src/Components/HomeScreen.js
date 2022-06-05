@@ -1,12 +1,15 @@
 import { Link  , useNavigate} from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
+import TokenContext from "../Contexts/TokenContext"
+import { useContext } from "react"
 
-export default function HomeScreen({  setLogin, setToken ,setEmail , email , password , setPassword}){
+export default function HomeScreen({  setEmail , email , password , setPassword}){
 
+  const {setToken , setLogin}=useContext(TokenContext)
     const navigate= useNavigate()
 
-    function login(){
+    function loginGo(){
         const body={
          email,
          password}
@@ -44,7 +47,7 @@ export default function HomeScreen({  setLogin, setToken ,setEmail , email , pas
         <Logo src="/img/Logo.png"/>
         <InputEmail  placeholder=" E-mail" onChange={(e)=> setEmail(e.target.value)} value={email} required/>
         <InputPassword  type="password" placeholder=" Senha" onChange={(e)=> setPassword(e.target.value)} value={password} required/>
-        <LooginButton onClick={login} >Entrar</LooginButton>
+        <LooginButton onClick={loginGo} >Entrar</LooginButton>
         <Link to="/sign-up">
         <Register>Não possuí uma conta? Cadastre-se</Register>
         </Link>

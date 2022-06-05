@@ -2,6 +2,8 @@ import axios from "axios"
 import { useEffect } from "react"
 import styled from "styled-components"
 import {Link} from "react-router-dom"
+import TokenContext from "../Contexts/TokenContext"
+import {useContext} from "react"
 
 function OnePlan({id , image , price}){  
     return(<>
@@ -14,7 +16,8 @@ function OnePlan({id , image , price}){
     </>)
 }
 
-export default function Plans({token , stockPlan, setStockPlan}){
+export default function Plans({ stockPlan, setStockPlan}){
+    const {token }=useContext(TokenContext)
     useEffect(()=>{
         const config={
             headers:{

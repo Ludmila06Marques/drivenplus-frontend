@@ -3,7 +3,8 @@ import { useEffect  , useState} from "react"
 import axios from "axios";
 import styled from "styled-components"
 import SignPlane from "./SignPlan";
-import Ask from "./Modal";
+import TokenContext from "../Contexts/TokenContext";
+import {useContext} from "react"
 
 function BenefitsPlane({title , membershipId , index , setMemberShipId1}){
   setMemberShipId1(membershipId)
@@ -19,9 +20,10 @@ function BenefitsPlane({title , membershipId , index , setMemberShipId1}){
 }
 
 
-export default function PickedPlan({token , setMemberShipId1 , membershipId1 , setChoose , perks , setPerks , setPlan , choose ,  email , password , setLogin}){
+export default function PickedPlan({ setMemberShipId1 , membershipId1 , setChoose , perks , setPerks , setPlan , choose ,  email , password }){
   //  const [hid , setHid]=useState("0")
   const navigate=useNavigate()
+  const {token }=useContext(TokenContext)
 
     const {idPlano} = useParams();
    
@@ -87,7 +89,7 @@ export default function PickedPlan({token , setMemberShipId1 , membershipId1 , s
         </GroupPrice>
        <Text> R$ {price} cobrados mensalmente </Text>
         </Group>
-        <SignPlane setLogin={setLogin} email={email}  password={password} choose={choose} setPlan={setPlan} setChoose={setChoose} name={name} price={price}  membershipId1={membershipId1} token={token}/>
+        <SignPlane email={email}  password={password} choose={choose} setPlan={setPlan} setChoose={setChoose} name={name} price={price}  membershipId1={membershipId1} />
         
 
     </>)
