@@ -3,6 +3,7 @@ import { useEffect  , useState} from "react"
 import axios from "axios";
 import styled from "styled-components"
 import SignPlane from "./SignPlan";
+import Ask from "./Modal";
 
 function BenefitsPlane({id , title , membershipId , link, index , setMemberShipId1}){
 
@@ -21,16 +22,15 @@ function BenefitsPlane({id , title , membershipId , link, index , setMemberShipI
 }
 
 
-export default function PickedPlan({token , membershipId , setMemberShipId1 , membershipId1}){
+export default function PickedPlan({token , membershipId , setMemberShipId1 , membershipId1 , setChoose , perks , setPerks}){
   //  const [hid , setHid]=useState("0")
-  const [hid , setHid]=useState(false)
 
     const {idPlano} = useParams();
     console.log("entrei" , idPlano )
     const [image , setImage]=useState("")
     const [price , setPrice]=useState("")
     const [name , setName]=useState("")
-    const[ perks , setPerks]=useState([])
+   
     
     useEffect(()=>{
         const config={
@@ -63,7 +63,7 @@ export default function PickedPlan({token , membershipId , setMemberShipId1 , me
     <Container>
         <Icones>
         <ion-icon name="arrow-back-outline"></ion-icon>
-        <ion-icon name="close-outline"></ion-icon>
+       
         </Icones>
         <Image src={image} />
         <Title>{name}</Title>
@@ -84,46 +84,13 @@ export default function PickedPlan({token , membershipId , setMemberShipId1 , me
         </GroupPrice>
        <Text> R$ {price} cobrados mensalmente </Text>
         </Group>
-        <SignPlane setHid={setHid} membershipId1={membershipId1} token={token}/>
-        <Ask hid={hid} >
-            <AskTitle>Tem certeza que deseja assinar o plano {name}({price}) ?</AskTitle>
-            <ButtonNo>Nao</ButtonNo>
-            <ButtonYes>Sim</ButtonYes>
-        </Ask>
+        <SignPlane setChoose={setChoose} name={name} price={price}  membershipId1={membershipId1} token={token}/>
+        
 
     </>)
 }
-const ButtonNo=styled.button`
-width: 95px;
-height: 52px;
-border-radius: 8px;
-margin-top: 47px;
-margin-right: 14px;
-`
-const ButtonYes=styled.button`
-width: 95px;
-height: 52px;
-border-radius: 8px;
-margin-top: 47px;
 
-`
-const AskTitle=styled.h1`
-font-size:18px;
-color: black;
-font-weight: bold;
-text-align: center;
-`
-const Ask=styled.div`
-opacity: ${props=> props.hid ? "1" : "0"};;
-width: 248px;
-height: 210px;
-border-radius: 12px;
-background-color: white;
-position: absolute;
-top: 229px;
-right: 63px;
-padding: 22px;
-`
+
 const Text=styled.h3`
 font-size: 14px;
 color: white;
@@ -186,7 +153,7 @@ display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
-position: relative;
+
 `
 const Icones=styled.div`
 width: 100%;
@@ -197,21 +164,13 @@ align-items: center;
 
 
 ion-icon{
-    &:first-child{
+   
     font-size: 40px;
     visibility: visible;
     color: white;
  
-    }
+    
   
-
-    &:last-child{
-  // display: ${props=> props.hid == " 0" ? "none" : "block"};  
-   font-size: 40px;   
-   color: black;
-   background-color: white;
-   border-radius: 4px;
-}
 }
 
 `

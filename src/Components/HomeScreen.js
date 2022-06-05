@@ -2,7 +2,7 @@ import { Link  , useNavigate} from "react-router-dom"
 import styled from "styled-components"
 import axios from "axios"
 
-export default function HomeScreen({ stockPlan, token , setToken ,setEmail , email , password , setPassword}){
+export default function HomeScreen({  setLogin, stockPlan, token , setToken ,setEmail , email , password , setPassword}){
 
     const navigate= useNavigate()
 
@@ -16,6 +16,7 @@ export default function HomeScreen({ stockPlan, token , setToken ,setEmail , ema
              promise
              .then(res=>{   
                 setToken(res.data.token)    
+                setLogin(res.data)
                  console.log(res.data)             
                  navigate("/subscriptions")
                 // navigate("/home")

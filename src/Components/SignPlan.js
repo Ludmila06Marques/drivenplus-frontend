@@ -1,42 +1,26 @@
 import axios from "axios"
 import { useState } from "react"
 import styled from "styled-components"
+import Ask from "./Modal"
 
 
-export default function SignPlane({token , membershipId1  , setHid}){
+
+export default function SignPlane({token , membershipId1  , name , price , setChoose}){
+
+   const[modal , setModal]=useState(false)
+
+
    console.log(membershipId1)
     const[cardName , setCardName]=useState("")
     const[cardNumber , setCardNumber]=useState("")
     const[securityNumber , setSecurityNumber]=useState("")
     const[expirationDate , setExpirationDate]=useState("")
   
-    function assinar() {
-        const config={
-            headers:{
-            Authorization:`Bearer ${token}`
-            }
-        }
-        console.log(config)
-        const body={
-        membershipId: membershipId1,
-        cardName,
-        cardNumber,
-        securityNumber,
-        expirationDate
-    }  
-    const promise= axios.post("https://mock-api.driven.com.br/api/v4/driven-plus/subscriptions" ,body , config )
-
-    promise 
-    .then((res)=>{
-       console.log(res.data)
-       setHid(true)
+    function ask(){
+        setModal(true)  
+        
     }
-    )
-    .catch((err)=>{
-        console.log(err)
-
-    }
-    )}
+  
 
     return(<>
     <Group>
@@ -46,9 +30,8 @@ export default function SignPlane({token , membershipId1  , setHid}){
 <Input2 placeholder=" Codigo de seguranca" onChange={(e)=> setSecurityNumber(e.target.value)} value={securityNumber} required/>
 <Input2 placeholder=" Validade" onChange={(e)=> setExpirationDate(e.target.value)} value={expirationDate} required/>
 </Container>
-<Sign onClick={assinar} >ASSINAR</Sign>
-
-
+<Sign onClick={ask} >ASSINAR</Sign>
+<Ask setChoose={setChoose} membershipId1={membershipId1} cardName={cardName} cardNumber={cardNumber} securityNumber={securityNumber} expirationDate={expirationDate} modal={modal} setModal={setModal} name={name} price={price} token={token} />
 </Group>
     </>)
 }
