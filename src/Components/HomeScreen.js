@@ -28,8 +28,7 @@ export default function HomeScreen({  setEmail , email , password , setPassword}
                  else{
                   navigate("/subscriptions")
                  }      
-               //  navigate("/subscriptions")
-                // navigate("/home")
+              
              })
               
            .catch(err=>{
@@ -47,7 +46,7 @@ export default function HomeScreen({  setEmail , email , password , setPassword}
         <Logo src="/img/Logo.png"/>
         <InputEmail  placeholder=" E-mail" onChange={(e)=> setEmail(e.target.value)} value={email} required/>
         <InputPassword  type="password" placeholder=" Senha" onChange={(e)=> setPassword(e.target.value)} value={password} required/>
-        <LooginButton onClick={loginGo} >Entrar</LooginButton>
+        <LooginButton onClick={loginGo} >ENTRAR</LooginButton>
         <Link to="/sign-up">
         <Register>Não possuí uma conta? Cadastre-se</Register>
         </Link>
@@ -71,6 +70,7 @@ height: 52px;
 margin-top: 24px;
 border-radius: 8px;
 border: solid 1px #FF4791;
+color: white;
 `
 const InputPassword=styled.input`
 width: 299px;

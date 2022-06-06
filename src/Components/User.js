@@ -22,7 +22,7 @@ export default function User(){
 
     return(<>
      <Icones>
-        <ion-icon onCLick={goBack} name="arrow-back-outline"></ion-icon>
+        <ion-icon onClick={goBack} name="arrow-back-outline"></ion-icon>
        
         </Icones>
     <Group>

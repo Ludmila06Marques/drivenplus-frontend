@@ -21,8 +21,7 @@ export default function Ask({name , price , modal , setModal ,  membershipId1 , 
                   
                    setLogin(res.data)                  
                    navigate("/home")
-                  //  navigate("/subscriptions")
-                   // navigate("/home")
+                
                 })
                  
               .catch(err=>{

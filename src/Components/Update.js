@@ -14,7 +14,7 @@ export default function Update(){
     const [newEmail , setNewEmail]=useState("")
   
     function goBack(){
-        navigate("/home")
+        navigate(`/users/${login.id}`)
 
     }
     function save(){
@@ -28,7 +28,7 @@ export default function Update(){
            cpf: login.cpf,
            email:newEmail,
            currentPassword:login.password,
-           newPassxod:newPass
+           newPassword:newPass
         }
       
         console.log(body)
@@ -37,7 +37,8 @@ export default function Update(){
        
         promise
         .then(res=>{
-           console.log(res.data)         
+           console.log(res.data)  
+           navigate(`/users/${login.id}`)       
          
         })
       

@@ -21,7 +21,7 @@ function BenefitsPlane({title , membershipId , index , setMemberShipId1}){
 
 
 export default function PickedPlan({ setMemberShipId1 , membershipId1 , setChoose , perks , setPerks , setPlan , choose ,  email , password }){
-  //  const [hid , setHid]=useState("0")
+
   const navigate=useNavigate()
   const {token }=useContext(TokenContext)
 

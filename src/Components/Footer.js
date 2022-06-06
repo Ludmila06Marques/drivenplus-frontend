@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import axios from "axios"
 import TokenContext from "../Contexts/TokenContext"
 import { useContext } from "react"
-//Rota /planos existe??
+
 
 export default function Footer(){
   
@@ -12,7 +12,7 @@ export default function Footer(){
     const navigate= useNavigate()
 
     function changePlan(){
-     //navigate("/planos")
+    
      
      navigate("/subscriptions")
     }
