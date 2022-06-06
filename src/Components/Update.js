@@ -37,7 +37,7 @@ export default function Update(){
       
         console.log(body)
 
-        const promise=axios.put("https://mock-api.driven.com.br/api/v4/driven-plus/users/"  ,config,body)
+        const promise=axios.put("https://mock-api.driven.com.br/api/v4/driven-plus/users/"  ,body ,config)
        
         promise
         .then(res=>{
