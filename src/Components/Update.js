@@ -7,9 +7,8 @@ import { useNavigate } from "react-router-dom";
 
 export default function Update(){
     const navigate=useNavigate()  
-  
-    const {token ,  login , setLogin}=useContext(TokenContext)
-    
+    const {token ,  login }=useContext(TokenContext) 
+     console.log(login)
     const [newPass , setNewPass]=useState("")
     const [newName , setNewName]=useState("")
     const [newEmail , setNewEmail]=useState("")
@@ -57,9 +56,9 @@ export default function Update(){
         </Icones>
     <Group>
     <Form>
-        <InputName placeholder={login.name} onChange={(e)=> setNewName(e.target.value)} value={newName} />
+        <InputName placeholder={login.name} onChange={(e)=> setNewName(e.target.value)} value={login.name} />
         <InputCpf placeholder={login.cpf} disabled/>
-        <InputEmail placeholder={login.email}onChange={(e)=> setNewEmail(e.target.value)} value={newEmail}  />
+        <InputEmail placeholder={login.email}onChange={(e)=> setNewEmail(e.target.value)} value={login.email}  />
         <InputPassword placeholder="Senha Atual"  />
         <InputNewPassword placeholder="Nova senha"onChange={(e)=> setNewPass(e.target.value)} value={newPass}  />
 
