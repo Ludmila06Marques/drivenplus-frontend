@@ -9,20 +9,24 @@ export default function Update(){
     const navigate=useNavigate()  
     const {token ,  login }=useContext(TokenContext) 
      console.log(login)
+    
     const [newPass , setNewPass]=useState("")
-    const [newName , setNewName]=useState("")
-    const [newEmail , setNewEmail]=useState("")
+    const [newName , setNewName]=useState(`${login.name}`)
+    const [newEmail , setNewEmail]=useState(`${login.email}`)
   
     function goBack(){
         navigate(`/users/${login.id}`)
 
     }
-    function save(){
+    function save(e){
+        e.preventDefault()
+     
         const config={
             headers:{
             Authorization:`Bearer ${token}`
             }
         }
+        console.log(config)
         const body={
            name:newName,
            cpf: login.cpf,
@@ -33,7 +37,7 @@ export default function Update(){
       
         console.log(body)
 
-        const promise=axios.put("https://mock-api.driven.com.br/api/v4/driven-plus/users/"  , body,config)
+        const promise=axios.put("https://mock-api.driven.com.br/api/v4/driven-plus/users/"  ,config,body)
        
         promise
         .then(res=>{
@@ -44,6 +48,7 @@ export default function Update(){
       
         .catch(err=>{          
             alert(err)
+            console.log(err)
            
         })
     }
